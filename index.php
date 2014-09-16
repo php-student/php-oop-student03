@@ -41,8 +41,11 @@ class Person{
         $methodname='get'.ucfirst($property);
         if(method_exists($this, $methodname)){
             
-            return $this->method();
+            return $this->$methodname();
      
+        } else{
+            
+            throw Exception('not exists');
         }
         
     }
@@ -57,3 +60,7 @@ class Person{
 $person=new Person();
 
 echo $person->name;
+
+echo '<br>';
+
+echo $person->ege;
