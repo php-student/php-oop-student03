@@ -90,7 +90,7 @@ class Person{
         
  }
  
-  public function __unset($property,$value){
+  public function __unset($property){
         
         $methodname='set'.ucfirst($property);
         if(method_exists($this, $methodname)){
