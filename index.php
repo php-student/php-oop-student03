@@ -31,6 +31,11 @@ class Reader{
     }
 }*/
 
+/**
+ * @property string $name
+ * @property integer $ege
+ */
+
 class Person{
     
     protected $_name="Ivan";
@@ -46,6 +51,19 @@ class Person{
         } else{
             
             throw new Exception('not exists');
+        }
+        
+    }
+    
+    public function __isset($property) {
+         $methodname='get'.ucfirst($property);
+        if(method_exists($this, $methodname)){
+            
+            return true;
+     
+        } else{
+            
+           return false;
         }
         
     }
@@ -84,11 +102,16 @@ class Person{
 
 $person=new Person();
 
-echo $person->name;
+//echo $person->name;
 
 echo '<br>';
 
-echo $person->ege;
+//echo $person->ege;
 
 
 $person->Age=12;
+
+
+var_dump(isset($person->name));
+
+var_dump(isset($person->ege));
