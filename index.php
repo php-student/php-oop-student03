@@ -54,6 +54,31 @@ class Person{
         
         return $this->_name;
     }
+
+
+ public function __set($property,$value){
+        
+        $methodname='set'.ucfirst($property);
+        if(method_exists($this, $methodname)){
+            
+            return $this->$methodname();
+     
+        } else{
+            
+            throw new Exception('not exists');
+        }
+        
+ }
+    
+    public function getAge(){
+        
+        return $this->_ege;
+    }
+    
+      public function setAge($age){
+        
+        return $this->_age=$age;
+    }
 }
 
 
@@ -64,3 +89,6 @@ echo $person->name;
 echo '<br>';
 
 echo $person->ege;
+
+
+$person->Age=12;
