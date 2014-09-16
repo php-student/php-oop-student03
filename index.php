@@ -7,7 +7,7 @@ class Greeting{
     
     static public function sayHollow(){
         
-        echo "Hollow {self::$name}";
+        echo "Hollow".self::$name;
     }
 }
 
