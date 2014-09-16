@@ -38,8 +38,30 @@ class Reader{
 
 class Person{
     
-    protected $_name="Ivan";
-    protected $_ege=30;
+    protected $_name;
+    protected $_ege;
+    
+    public $writer;
+    
+    public function __call($name,$argument){
+        
+         $methodname='get'.ucfirst($property);
+        if(method_exists($this->writer, $name)){
+            
+            return $this->writer->$methodname($this);
+     
+        } else{
+            
+            throw new Exception('not exists');
+        }
+        
+    }
+    
+    public function __construct($name,$age){
+        $this->_name=$name;
+    $this->_ege=$age;
+        
+}
     
     public function __get($property){
         
@@ -115,7 +137,7 @@ class Person{
 }
 
 
-$person=new Person();
+$person=new Person('maksim',43);
 
 //echo $person->name;
 
@@ -134,3 +156,25 @@ var_dump(isset($person->ege));
 unset($person->ege);
 
 var_dump(isset($person->ege));
+
+
+echo '<br>';
+
+class PersonWriter{
+    
+    public function greeting(Person $person){
+        
+        echo "Hollow ".$person->name;
+    }
+    
+     public function summary(Person $person){
+        
+        echo "Name ".$person->name.' '.$person->ege;
+    }
+}
+
+
+
+$person->summary();
+$person->greeting();
+
