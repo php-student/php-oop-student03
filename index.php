@@ -45,7 +45,7 @@ class Person{
      
         } else{
             
-            throw Exception('not exists');
+            throw new Exception('not exists');
         }
         
     }
