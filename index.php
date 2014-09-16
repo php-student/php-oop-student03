@@ -86,7 +86,22 @@ class Person{
             throw new Exception('not exists');
         }
         
+        
+        
  }
+ 
+  public function __unset($property,$value){
+        
+        $methodname='set'.ucfirst($property);
+        if(method_exists($this, $methodname)){
+            
+            return $this->$methodname(null);
+     
+        } else{
+            
+            throw new Exception('not exists');
+        }
+  }
     
     public function getAge(){
         
@@ -113,5 +128,9 @@ $person->Age=12;
 
 
 var_dump(isset($person->name));
+
+var_dump(isset($person->ege));
+
+unset($person->ege);
 
 var_dump(isset($person->ege));
