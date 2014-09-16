@@ -1,6 +1,6 @@
 <?php
 
-class Greeting{
+/*class Greeting{
     
     const number=90;
     public static $name='Иван';
@@ -29,5 +29,31 @@ class Reader{
         
         
     }
+}*/
+
+class Person{
+    
+    protected $_name="Ivan";
+    protected $_ege=30;
+    
+    public function __get($property){
+        
+        $methodname='get'.ucfirst($property);
+        if(method_exists($this, $methodname)){
+            
+            return $this->method();
+     
+        }
+        
+    }
+    
+    public function getName(){
+        
+        return $this->_name;
+    }
 }
 
+
+$person=new Person();
+
+echo $person->name;
